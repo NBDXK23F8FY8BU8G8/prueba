@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 34.5, 10 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "movimientobala"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1300, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 38.75, 11.5 )
+
+[node name="bala" type="Node2D"]
+
+[node name="bala" type="KinematicBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="bala"]
+margin_right = 68.0
+margin_bottom = 20.0
+color = Color( 0.0823529, 0.607843, 0.0901961, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bala"]
+position = Vector2( 35.5, 11 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="bala"]
+autoplay = "movimientobala"
+anims/RESET = SubResource( 2 )
+anims/movimientobala = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="bala"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bala/Area2D"]
+position = Vector2( 35.25, 9.5 )
+shape = SubResource( 4 )
